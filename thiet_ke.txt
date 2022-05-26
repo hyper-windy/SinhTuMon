@@ -1,0 +1,3 @@
+- Khoi tao map truoc a random cac vat can (5 - 7 cai) trong map truoc
+- Cac o k co vat can thi bo dat vao
+- Tao pool chua quai

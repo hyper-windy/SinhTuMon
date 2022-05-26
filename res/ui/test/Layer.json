@@ -1,0 +1,155 @@
+{
+  "ID": "36e203fd-6cec-4e16-b8a3-3b2b92d09efd",
+  "Version": "2.3.4",
+  "Name": "Layer",
+  "Content": {
+    "Content": {
+      "Animation": {
+        "Duration": 0,
+        "Speed": 1.0,
+        "Timelines": [],
+        "ctype": "TimelineActionData"
+      },
+      "AnimationList": [],
+      "ObjectData": {
+        "Tag": 9,
+        "Children": [
+          {
+            "FontSize": 14,
+            "ButtonText": "Button",
+            "TextColor": {
+              "R": 65,
+              "G": 65,
+              "B": 70
+            },
+            "DisabledFileData": {
+              "Type": "Default",
+              "Path": "Default/Button_Disable.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Default",
+              "Path": "Default/Button_Press.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Default",
+              "Path": "Default/Button_Normal.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 16,
+            "Scale9Height": 14,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": -0.8772,
+              "ScaleY": 2.2402
+            },
+            "Position": {
+              "X": 645.3867,
+              "Y": 388.637
+            },
+            "Scale": {
+              "ScaleX": 4.1621,
+              "ScaleY": 2.0568
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.4838,
+              "Y": 0.5182
+            },
+            "PreSize": {
+              "X": 0.0345,
+              "Y": 0.048
+            },
+            "LeftMargin": 685.7385,
+            "RightMargin": 602.2615,
+            "TopMargin": 406.0091,
+            "BottomMargin": 307.9909,
+            "Tag": 10,
+            "ActionTag": 1361079165,
+            "Size": {
+              "X": 46.0,
+              "Y": 36.0
+            },
+            "Name": "Button_1",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FileData": {
+              "Type": "Normal",
+              "Path": "buy_2.png",
+              "Plist": ""
+            },
+            "BlendFunc": {
+              "Src": 1,
+              "Dst": 771
+            },
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 290.8676,
+              "Y": 425.6102
+            },
+            "Scale": {
+              "ScaleX": -3.0915,
+              "ScaleY": 2.5808
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.218,
+              "Y": 0.5675
+            },
+            "PreSize": {
+              "X": 0.0345,
+              "Y": 0.0613
+            },
+            "LeftMargin": 267.8676,
+            "RightMargin": 1020.1324,
+            "TopMargin": 301.3898,
+            "BottomMargin": 402.6102,
+            "Tag": 11,
+            "ActionTag": 120429762,
+            "Size": {
+              "X": 36.0,
+              "Y": 17.0
+            },
+            "Name": "Sprite_1",
+            "ctype": "SpriteObjectData"
+          }
+        ],
+        "Size": {
+          "X": 1334.0,
+          "Y": 750.0
+        },
+        "Name": "Layer",
+        "ctype": "LayerObjectData"
+      },
+      "UsedResources": [
+        "buy_2.png",
+        "Default/Button_Disable.png",
+        "Default/Button_Normal.png",
+        "Default/Button_Press.png"
+      ],
+      "ctype": "GameFileData"
+    }
+  },
+  "Type": "Layer"
+}
