@@ -82,12 +82,20 @@ var cube_id_to_frame = [
 ]
 
 var res = {
-	map_cell: "res/sprite/map/map_cell_0000.png",
-	map_rock1: "res/sprite/map/map_decoration_rock_0001.png",
-	map_tree1: "res/sprite/map/map_decoration_tree_0001.png",
-	map_tree2: "res/sprite/map/map_decoration_tree_0004.png",
+	map_png: "res/sprite/atlas/map/map.png",
+	map_plist: "res/sprite/atlas/map/map.plist",
 
+	assasin_png: "res/sprite/atlas/monster/assasin.png",
+	assasin_plist: "res/sprite/atlas/monster/assasin.plist",
 
+	bat_png: "res/sprite/atlas/monster/bat.png",
+	bat_plist: "res/sprite/atlas/monster/bat.plist",
+
+	demon_tree_png: "res/sprite/atlas/monster/demon_tree.png",
+	demon_tree_plist: "res/sprite/atlas/monster/demon_tree.plist",
+
+	giant_png: "res/sprite/atlas/monster/giant.png",
+	giant_plist: "res/sprite/atlas/monster/giant.plist",
 }
 
 

@@ -17,6 +17,9 @@ var PlayGround = cc.Layer.extend({
 	{
         this._super();
 		
+        cc.spriteFrameCache.addSpriteFrames(res.map_plist, res.map_png);
+        cc.spriteFrameCache.addSpriteFrames(res.assasin_plist, res.assasin_png);
+
         this.init();
     },
 	

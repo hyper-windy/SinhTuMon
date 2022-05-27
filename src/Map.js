@@ -21,7 +21,7 @@ var Map = cc.Layer.extend({
 
         for(var i = MW.MATRIX.WIDTH - 1; i >= 0; i--){
             for(var j = MW.MATRIX.HEIGHT - 1; j >= 0; j--){
-                var bg = new cc.Sprite(res.map_cell);
+                var bg = new cc.Sprite(MW.CELL.CELL_PNG);
                 bg.attr({
                     x: MW.CELL.WIDTH*i,
                     y: MW.CELL.HEIGHT*j,
@@ -57,6 +57,8 @@ var Map = cc.Layer.extend({
 
         this.randomMap();
 
+        log(this.barrier);
+
         for(var i = 0; i < this.num_barrier; i++){
             var p = Barrier.getBarrier(i);
             var idx = this.barrier[i];
@@ -72,30 +74,30 @@ var Map = cc.Layer.extend({
 
         this.getPath();
 
-        for(var i = 0; i < x.length; i++){
-            var p = new cc.Sprite(res.map_cell);
-            var idx = x[i];
-            var _y = Math.floor(idx/MW.MATRIX.WIDTH);
-            var _x = idx - _y*MW.MATRIX.WIDTH;
-            // log(_x + ", " + _y);
-            p.attr({
-                x: _x*MW.CELL.WIDTH + MW.RELATIVE_CELL.WIDTH,
-                y: _y*MW.CELL.HEIGHT + MW.RELATIVE_CELL.HEIGHT,
-                zIndex:100,
-                anchorX:0,
-                anchorY:0,
-            });
-            this.addChild(p);
-        }
+        // for(var i = 0; i < this.shortes_path.length; i++){
+        //     var p = new cc.Sprite(MW.CELL.CELL_PNG);
+        //     var idx = this.shortes_path[i];
+        //     var _y = Math.floor(idx/MW.MATRIX.WIDTH);
+        //     var _x = idx - _y*MW.MATRIX.WIDTH;
+        //     // log(_x + ", " + _y);
+        //     p.attr({
+        //         x: _x*MW.CELL.WIDTH + MW.RELATIVE_CELL.WIDTH,
+        //         y: _y*MW.CELL.HEIGHT + MW.RELATIVE_CELL.HEIGHT,
+        //         zIndex:100,
+        //         anchorX:0,
+        //         anchorY:0,
+        //     });
+        //     this.addChild(p);
+        // }
     },
 	
     randomMap:function () 
 	{
 		var temp_arr = [];
-
         for (var i = 1; i < MW.MATRIX.WIDTH * MW.MATRIX.HEIGHT - 1; i++){
             temp_arr.push(i);
         }
+
 
         this.num_barrier = randomIntFromInterval(MW.NUM_BARRIER.MIN, MW.NUM_BARRIER.MAX);
 

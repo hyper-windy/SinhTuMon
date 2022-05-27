@@ -12,25 +12,22 @@ MW.NUM_BARRIER = {
     MAX: 7,
 }
 
-MW.NUM_BARRIER = {
-    NUM: 20,
-}
-
 MW.CELL = {
     SCALE: 2,
     WIDTH: 77*2,
     HEIGHT: 77*2,
     ANCHOR_X: 0,
     ANCHOR_Y: 0,
+    CELL_PNG: "#map_cell_0000.png",
 }
 
 MW.CONTAINER = {
     BARRIER: [],
     MONSTER: [],
-    LIST_BARRIER_NAME: [res.map_rock1, res.map_tree1, res.map_tree2],
+    LIST_BARRIER_NAME: ["#map_decoration_rock_0001.png", "#map_decoration_tree_0001.png", "#map_decoration_tree_0004.png"],
 }
 
 MW.RELATIVE_CELL = {
     WIDTH: 20,
-    HEIGHT: 30,
+    HEIGHT: 50,
 }
