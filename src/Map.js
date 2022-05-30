@@ -28,6 +28,24 @@ var Map = cc.Layer.extend({
             }
         }
 
+        var start = new cc.Sprite(MW.MATRIX.START_PNG);
+        var end = new cc.Sprite(MW.MATRIX.END_PNG);
+        start.attr({
+            anchorX: 0,
+            anchorY: 0,
+            x: 0,
+            y: 20,
+            scale:0.7,
+        });
+        end.attr({
+            anchorX: 0,
+            anchorY: 0,
+            x: (MW.MATRIX.WIDTH-1)*MW.CELL.WIDTH + 20,
+            y: (MW.MATRIX.HEIGHT-1)*MW.CELL.HEIGHT + 60,
+        });
+        this.addChild(start);
+        this.addChild(end);
+
         this.init();
     },
 
@@ -59,10 +77,24 @@ var Map = cc.Layer.extend({
         //     this.addChild(p);
         // }
 
-        log(this.shortes_path);
+        // log(this.shortes_path);
 
-        var m = new Monster();
-        this.addChild(m);
+
+        this.schedule(this.bornMonster, 2);
+        // var p = new Assasin();
+        // this.addChild(p);
+        // p.run();
+        // p.run();
+        // var path = m.getPath();
+        // log(path);
+        // for(var i = 0; i < path.length; i++){
+        //     var p = new Monster();
+        //     var idx = path[i];
+        //     p.setPos(idx);
+        //     // log(_x + ", " + _y);
+        //     this.addChild(p);
+        // }
+        
     },
 	
     randomMap:function () 
@@ -87,5 +119,12 @@ var Map = cc.Layer.extend({
 
     getPath:function(){
         this.shortes_path = bfs(0, 48);
+    },
+
+    bornMonster:function(){
+        var p = Monster.getMonster();
+        if(p != null){
+            p.run();
+        }
     }
 });

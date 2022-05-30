@@ -15,7 +15,7 @@
                 <key>spriteSourceSize</key>
                 <string>{77,91}</string>
                 <key>textureRect</key>
-                <string>{{133,0},{77,91}}</string>
+                <string>{{0,0},{77,91}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -30,7 +30,7 @@
                 <key>spriteSourceSize</key>
                 <string>{93,103}</string>
                 <key>textureRect</key>
-                <string>{{0,91},{93,103}}</string>
+                <string>{{77,0},{93,103}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -45,7 +45,7 @@
                 <key>spriteSourceSize</key>
                 <string>{145,170}</string>
                 <key>textureRect</key>
-                <string>{{93,91},{145,170}}</string>
+                <string>{{170,0},{145,170}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -60,37 +60,37 @@
                 <key>spriteSourceSize</key>
                 <string>{145,170}</string>
                 <key>textureRect</key>
-                <string>{{0,261},{145,170}}</string>
+                <string>{{315,0},{145,170}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>map_forest_obstacle_2.png</key>
+            <key>map_house.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{64,73}</string>
+                <string>{112,134}</string>
                 <key>spriteSourceSize</key>
-                <string>{64,73}</string>
+                <string>{112,134}</string>
                 <key>textureRect</key>
-                <string>{{0,0},{64,73}}</string>
+                <string>{{460,0},{112,134}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>map_forest_obstacle_3.png</key>
+            <key>map_monster_gate_player.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{69,73}</string>
+                <string>{206,154}</string>
                 <key>spriteSourceSize</key>
-                <string>{69,73}</string>
+                <string>{206,154}</string>
                 <key>textureRect</key>
-                <string>{{64,0},{69,73}}</string>
+                <string>{{572,0},{206,154}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -106,9 +106,9 @@
             <key>realTextureFileName</key>
             <string>map.png</string>
             <key>size</key>
-            <string>{238,431}</string>
+            <string>{778,170}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:d2b7f4d0a38a8ba5ad28d991a266df3f:2d639fd109008e53ebb5b111e8e6908a:ac44135ad7f9bbae94fd5e52745d3e3e$</string>
+            <string>$TexturePacker:SmartUpdate:bc719d7f3269039574170afe06afb256:faddae6884b64a4bb1e61dee3da1812c:ac44135ad7f9bbae94fd5e52745d3e3e$</string>
             <key>textureFileName</key>
             <string>map.png</string>
         </dict>

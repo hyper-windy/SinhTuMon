@@ -6,42 +6,77 @@ var Monster = cc.Sprite.extend({
 
     animationList: null,
 
-    ctor:function(){
-        this._super(MW.MONSTER.ASSASIN.PNG);
+    path: null,
 
-        this.animationList = [];
+    delay_per_frame: null,
 
-        for (var i = 0; i <= 4; i+=2){
-            var frames = [];
-            for(var j = 0; j <= 9; j++){
-                var monster = cc.spriteFrameCache.getSpriteFrame("monster_assassin_run_00" + i + j + ".png");
-                frames.push(monster);
-            }
-            var animation = new cc.Animation(frames, 0.1);
-            var animate = cc.animate(animation);
-            this.animationList.push(animate);
-        }
+    base_speed: null,
+
+    ctor:function(png, speed, delay_per_frame){
+        this._super(png);
+
+        this.getPath();
+
+        this.base_speed = speed;
+
+        this.delay_per_frame = delay_per_frame;
+
+        // this.animationList = [];
+
+        // // 0 is up, 1 is right.
+        // var frames = [];
+        // for(var i = 40; i <= 49; i++){
+        //     frames.push(cc.spriteFrameCache.getSpriteFrame("monster_assassin_run_00" + i + ".png"));
+        // }
+        // this.animationList.push(frames);
+
+        // frames = [];
+        // for(var i = 20; i <= 29; i++){
+        //     frames.push(cc.spriteFrameCache.getSpriteFrame("monster_assassin_run_00" + i + ".png"));
+        // }
+        // this.animationList.push(frames);
+
+
+
+        // this.init(speed, delay_per_frame);
 
         this.init();
         
     },
 
+    getPath:function(){
+        this.path = [];
+        this.path.push(0);
+        var prev = shared_map.shortes_path[1] - 0;
+        for (var i = 2; i < shared_map.shortes_path.length; i++){
+            if (shared_map.shortes_path[i] - shared_map.shortes_path[i-1] == prev){
+                continue;
+            }
+            this.path.push(shared_map.shortes_path[i-1]);
+            // this.path.push(shared_map.shortes_path[i]);
+            prev = shared_map.shortes_path[i] - shared_map.shortes_path[i-1];
+        }
+        this.path.push(48);
+        return this.path;
+    },
+
     init:function(){
-        this.speed = MW.MONSTER.ASSASIN.SPEED;
-        this.next_cell = 0;
-        this.next_pos = this.getPos(shared_map.shortes_path[this.next_cell]);
-        this.changeDirection();
+        this.speed = this.base_speed;
+        // this.visible = false;
+
+        this.next_cell = 0; 
+        this.next_pos = this.getPos(this.path[this.next_cell]);
+        // this.changeDirection();
         this.attr({
             x: 0,
             y: 0,
-            anchorX: 0,
-            anchorY: 0,
+            // anchorX: 0,
+            // anchorY: 0,
             scale: MW.MONSTER.ASSASIN.SCALE,
-            visible: true,
+            visible: false,
         });
-
-        this.runAction(this.animationList[2]);
-        this.scheduleUpdate();
+      
+        // this.scheduleUpdate();
     },
 
     getPos:function(idx, dimension = null){
@@ -58,15 +93,51 @@ var Monster = cc.Sprite.extend({
         }
     },
 
+    setPos:function(idx){
+        var _y = Math.floor(idx/MW.MATRIX.WIDTH);
+        var _x = idx - _y*MW.MATRIX.WIDTH;
+        this.attr({
+            x: _x*MW.CELL.WIDTH + MW.RELATIVE_CELL.WIDTH,
+            y: _y*MW.CELL.HEIGHT + MW.RELATIVE_CELL.HEIGHT,
+            visible:true,
+        });
+    },
+
     changeDirection:function(){
-        
-        if (this.next_cell == shared_map.shortes_path.length - 1){
-            this.unscheduleUpdate();
+        if (this.next_cell == this.path.length - 1){
+            this.destroy();
         }
         else {
-            this.curr_direction = shared_map.shortes_path[this.next_cell + 1] - shared_map.shortes_path[this.next_cell];
+            // this.curr_direction = shared_map.shortes_path[this.next_cell + 1] - shared_map.shortes_path[this.next_cell];
+            // this.next_cell++;
+            // this.next_pos = this.getPos(shared_map.shortes_path[this.next_cell]);
+            // if (this.curr_direction == 7) {
+            //     this.runAction(cc.animate(new cc.Animation(this.animationList[2],0.075,2)));
+                
+            // }
+            // else if(this.curr_direction == -7){
+            //     // this.moveDown(dt);
+            // }
+            // else if(this.curr_direction == 1){
+                
+            //     this.runAction(cc.animate(new cc.Animation(this.animationList[1],0.075,2)))
+            // }
+            // else{
+            //     // this.moveLeft(dt);
+            // }
+            var curr_pos = this.next_pos;
             this.next_cell++;
-            this.next_pos = this.getPos(shared_map.shortes_path[this.next_cell]);
+            this.next_pos = this.getPos(this.path[this.next_cell]);
+            if(curr_pos[1] == this.next_pos[1]){ // y bang nhau thi di sang phai
+                this.curr_direction = 1;
+                this.stopAllActions();
+                this.runAction(cc.animate(new cc.Animation(this.animationList[1],this.delay_per_frame)).repeatForever());
+            }
+            else{
+                this.curr_direction = 7; // di len tren
+                this.stopAllActions();
+                this.runAction(cc.animate(new cc.Animation(this.animationList[0],this.delay_per_frame)).repeatForever());
+            }
         }
     },
 
@@ -111,5 +182,80 @@ var Monster = cc.Sprite.extend({
         else{
             this.moveLeft(dt);
         }
-    }
+
+
+    },
+
+    destroy:function(){
+        this.unscheduleUpdate();
+        this.stopAllActions();
+        
+        this.init();
+    },
+
+    run:function(){
+        this.visible = true;
+
+        this.scheduleUpdate();
+        this.changeDirection();
+    },
 });
+
+
+Monster.getMonster = function(){
+    if(MW.CONTAINER.MONSTER.length == 0){
+        Monster.create();
+    }
+    for(var i = 0; i < MW.MONSTER.NUM; i++){
+        if (MW.CONTAINER.MONSTER[i].visible == false){
+            return MW.CONTAINER.MONSTER[i];
+        }
+    }
+    return null;
+}
+
+Monster.create = function(){
+    for(var i = 0; i < MW.MONSTER.NUM; i++){
+        var p;
+        if (i == 0){
+            p = new DemonTree();
+            MW.CONTAINER.MONSTER.push(p);
+            shared_map.addChild(p);
+            continue;
+        }
+        if (i == 1){
+            p = new Giant();
+            MW.CONTAINER.MONSTER.push(p);
+            shared_map.addChild(p);
+            continue;
+        }
+        if (i == 2){
+            p = new Assasin();
+            MW.CONTAINER.MONSTER.push(p);
+            shared_map.addChild(p);
+            continue;
+        }
+        if (i == 3){
+            p = new Bat();
+            MW.CONTAINER.MONSTER.push(p);
+            shared_map.addChild(p);
+            continue;
+        }
+        
+        var k = randomIntFromInterval(1,4);
+        if(k == 1){
+            p = new Assasin();
+        }
+        else if (k == 2){
+            p = new Bat();
+        }
+        else if (k == 3){
+            p = new DemonTree();
+        }
+        else{
+            p = new Giant();
+        }
+        shared_map.addChild(p);
+        MW.CONTAINER.MONSTER.push(p);
+    }
+}

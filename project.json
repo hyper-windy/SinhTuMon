@@ -20,6 +20,10 @@
         "src/Cell.js",
         "src/Barrier.js",
         "src/Monster.js",
+        "src/Assasin.js",
+        "src/Bat.js",
+        "src/Demon_tree.js",
+        "src/Giant.js",
         "src/Map.js",
         "src/PlayGroundScene.js"
     ]

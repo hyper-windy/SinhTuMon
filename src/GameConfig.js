@@ -5,6 +5,8 @@ MW.MATRIX = {
     HEIGHT: 7,
     ANCHOR_X: 0,
     ANCHOR_Y: 0,
+    START_PNG: "#map_monster_gate_player.png",
+    END_PNG: "#map_house.png",
 };
 
 MW.NUM_BARRIER = {
@@ -32,10 +34,42 @@ MW.RELATIVE_CELL = {
     HEIGHT: 50,
 }
 
-MW.MONSTER = {}
+MW.MONSTER = {
+    NUM: 10,
+}
 
 MW.MONSTER.ASSASIN ={
     PNG: "#monster_assassin_run_0000.png",
-    SPEED: 100,
+    SPEED: 200,
+    DELAY_PER_FRAME: 0.05,
     SCALE: 2,
+    ANCHOR_X:0.1,
+    ANCHOR_Y:0,
+}
+
+MW.MONSTER.BAT ={
+    PNG: "#monster_bat_run_0000.png",
+    SPEED: 250,
+    DELAY_PER_FRAME: 0.05,
+    SCALE: 2,
+    ANCHOR_X:0,
+    ANCHOR_Y:0,
+}
+
+MW.MONSTER.DEMON_TREE ={
+    PNG: "#monster_demon_tree_run_0000.png",
+    SPEED: 100,
+    DELAY_PER_FRAME: 0.1,
+    SCALE: 2,
+    ANCHOR_X:0.15,
+    ANCHOR_Y:0.25,
+}
+
+MW.MONSTER.GIANT ={
+    PNG: "#monster_dark_giant_run_0000.png",
+    SPEED: 100,
+    DELAY_PER_FRAME: 0.1,
+    SCALE: 2,
+    ANCHOR_X:0.15,
+    ANCHOR_Y:0.25,
 }
