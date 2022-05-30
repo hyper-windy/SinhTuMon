@@ -31,3 +31,11 @@ MW.RELATIVE_CELL = {
     WIDTH: 20,
     HEIGHT: 50,
 }
+
+MW.MONSTER = {}
+
+MW.MONSTER.ASSASIN ={
+    PNG: "#monster_assassin_run_0000.png",
+    SPEED: 100,
+    SCALE: 2,
+}

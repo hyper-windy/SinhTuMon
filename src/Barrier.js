@@ -12,6 +12,16 @@ var Barrier = cc.Sprite.extend({
             anchorY: 0,
             visible: false,
         });
+    },
+
+    setPos:function(idx){
+        var _y = Math.floor(idx/MW.MATRIX.WIDTH);
+        var _x = idx - _y*MW.MATRIX.WIDTH;
+        this.attr({
+            x: _x*MW.CELL.WIDTH + MW.RELATIVE_CELL.WIDTH,
+            y: _y*MW.CELL.HEIGHT + MW.RELATIVE_CELL.HEIGHT,
+            visible:true,
+        });
     }
 });
 
@@ -19,7 +29,6 @@ Barrier.getBarrier = function(i){
     if (MW.CONTAINER.BARRIER.length == 0){
         Barrier.create();
     }
-
     return MW.CONTAINER.BARRIER[i];
 }
 

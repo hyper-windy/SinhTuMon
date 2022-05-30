@@ -21,39 +21,23 @@ var Map = cc.Layer.extend({
 
         for(var i = MW.MATRIX.WIDTH - 1; i >= 0; i--){
             for(var j = MW.MATRIX.HEIGHT - 1; j >= 0; j--){
-                var bg = new cc.Sprite(MW.CELL.CELL_PNG);
-                bg.attr({
-                    x: MW.CELL.WIDTH*i,
-                    y: MW.CELL.HEIGHT*j,
-                    anchorX: MW.CELL.ANCHOR_X,
-                    anchorY: MW.CELL.ANCHOR_Y,
-                    scale: MW.CELL.SCALE,
-                })
+                var bg = new Cell();
+                bg.setCellPosition(i,j);
                 this.cell_list.push(bg);
                 this.addChild(bg);
             }
         }
 
-        // var bg = new cc.Sprite(res.background);
-        // bg.attr({
-        //     // width: consts.CELL_WIDTH,
-        //     // height: consts.CELL_HEIGHT,
-        //     x: consts.CELL_WIDTH*1,
-        //     y: consts.CELL_HEIGHT*1,
-        //     anchorX:0,
-        //     anchorY:0,
-        // })
-        // this.cell_list.push(bg);
-        // this.addChild(bg);
-        // log(bg.width);
-        // log(bg.height);
-
         this.init();
     },
 
     init:function(){
-        this.anchorX = MW.MATRIX.ANCHOR_X;
-        this.anchorY = MW.MATRIX.ANCHOR_Y;
+        this.attr({
+            anchorX: MW.MATRIX.ANCHOR_X,
+            anchorY: MW.MATRIX.ANCHOR_Y,
+        });
+        // this.anchorX = MW.MATRIX.ANCHOR_X;
+        // this.anchorY = MW.MATRIX.ANCHOR_Y;
 
         this.randomMap();
 
@@ -62,33 +46,23 @@ var Map = cc.Layer.extend({
         for(var i = 0; i < this.num_barrier; i++){
             var p = Barrier.getBarrier(i);
             var idx = this.barrier[i];
-            var _y = Math.floor(idx/MW.MATRIX.WIDTH);
-            var _x = idx - _y*MW.MATRIX.WIDTH;
-            // log(_x + ", " + _y);
-            p.attr({
-                x: _x*MW.CELL.WIDTH + MW.RELATIVE_CELL.WIDTH,
-                y: _y*MW.CELL.HEIGHT + MW.RELATIVE_CELL.HEIGHT,
-                visible:true,
-            });
+            p.setPos(idx);
         }
 
         this.getPath();
 
         // for(var i = 0; i < this.shortes_path.length; i++){
-        //     var p = new cc.Sprite(MW.CELL.CELL_PNG);
+        //     var p = new Barrier();
         //     var idx = this.shortes_path[i];
-        //     var _y = Math.floor(idx/MW.MATRIX.WIDTH);
-        //     var _x = idx - _y*MW.MATRIX.WIDTH;
+        //     p.setPos(idx);
         //     // log(_x + ", " + _y);
-        //     p.attr({
-        //         x: _x*MW.CELL.WIDTH + MW.RELATIVE_CELL.WIDTH,
-        //         y: _y*MW.CELL.HEIGHT + MW.RELATIVE_CELL.HEIGHT,
-        //         zIndex:100,
-        //         anchorX:0,
-        //         anchorY:0,
-        //     });
         //     this.addChild(p);
         // }
+
+        log(this.shortes_path);
+
+        var m = new Monster();
+        this.addChild(m);
     },
 	
     randomMap:function () 

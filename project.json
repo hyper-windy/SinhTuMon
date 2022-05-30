@@ -17,7 +17,9 @@
         "src/GameConfig.js",
         "src/OtherFunction.js",
         "src/PriorityQueue.js",
+        "src/Cell.js",
         "src/Barrier.js",
+        "src/Monster.js",
         "src/Map.js",
         "src/PlayGroundScene.js"
     ]
