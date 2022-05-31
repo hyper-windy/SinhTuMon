@@ -154,6 +154,7 @@ var Monster = cc.Sprite.extend({
                 this.runAction(cc.animate(new cc.Animation(this.animationList[1],this.delay_per_frame)).repeatForever());
             }
             else if (curr_pos[1] == this.next_pos[1] && this.next_pos[0] - curr_pos[0] < 0){ // Sang trai
+                // this.setScaleX(-1*2);
                 this.stopAllActions();
                 this.curr_direction = -1;
             }
