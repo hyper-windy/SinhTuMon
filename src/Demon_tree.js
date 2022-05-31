@@ -18,6 +18,13 @@ var DemonTree = Monster.extend({
         }
         this.animationList.push(frames);
 
+        frames = [];
+        for(var i = 0; i <= 9; i++){
+            frames.push(cc.spriteFrameCache.getSpriteFrame("monster_demon_tree_run_000" + i + ".png"));
+        }
+        frames.push(cc.spriteFrameCache.getSpriteFrame("monster_demon_tree_run_0010" + ".png"));
+        this.animationList.push(frames);
+
         // this.init( MW.MONSTER.DEMON_TREE.SPEED, MW.MONSTER.DEMON_TREE.DELAY_PER_FRAME);
         this.attr({
             anchorX:MW.MONSTER.DEMON_TREE.ANCHOR_X,

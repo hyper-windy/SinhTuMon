@@ -6,6 +6,8 @@ var Monster = cc.Sprite.extend({
 
     animationList: null,
 
+    full_path: null,
+
     path: null,
 
     delay_per_frame: null,
@@ -15,7 +17,7 @@ var Monster = cc.Sprite.extend({
     ctor:function(png, speed, delay_per_frame){
         this._super(png);
 
-        this.getPath();
+        // this.getPath();
 
         this.base_speed = speed;
 
@@ -44,17 +46,35 @@ var Monster = cc.Sprite.extend({
         
     },
 
-    getPath:function(){
+    // findPath:function(){
+
+    // },
+
+    findPath:function(src){
+        var x = Math.floor(this.x/MW.CELL.WIDTH);
+        var y = Math.floor(this.y/MW.CELL.HEIGHT);
+        var curr_pos = y*MW.MATRIX.WIDTH + x;
+        this.full_path = bfs(curr_pos, 48);
+        this.getPath(curr_pos);
+        
+        this.next_cell = 0;
+        this.next_pos = this.getPos(this.path[this.next_cell]);
+        this.changeDirection();
+        log(this.next_cell);
+        log(this.next_pos);
+    },
+
+    getPath:function(curr_pos){
         this.path = [];
-        this.path.push(0);
-        var prev = shared_map.shortes_path[1] - 0;
-        for (var i = 2; i < shared_map.shortes_path.length; i++){
-            if (shared_map.shortes_path[i] - shared_map.shortes_path[i-1] == prev){
+        this.path.push(curr_pos);
+        var prev = this.full_path[1] - curr_pos;
+        for (var i = 2; i < this.full_path.length; i++){
+            if (this.full_path[i] - this.full_path[i-1] == prev){
                 continue;
             }
-            this.path.push(shared_map.shortes_path[i-1]);
+            this.path.push(this.full_path[i-1]);
             // this.path.push(shared_map.shortes_path[i]);
-            prev = shared_map.shortes_path[i] - shared_map.shortes_path[i-1];
+            prev = this.full_path[i] - this.full_path[i-1];
         }
         this.path.push(48);
         return this.path;
@@ -64,8 +84,8 @@ var Monster = cc.Sprite.extend({
         this.speed = this.base_speed;
         // this.visible = false;
 
-        this.next_cell = 0; 
-        this.next_pos = this.getPos(this.path[this.next_cell]);
+        // this.next_cell = 0; 
+        // this.next_pos = this.getPos(this.path[this.next_cell]);
         // this.changeDirection();
         this.attr({
             x: 0,
@@ -128,16 +148,26 @@ var Monster = cc.Sprite.extend({
             var curr_pos = this.next_pos;
             this.next_cell++;
             this.next_pos = this.getPos(this.path[this.next_cell]);
-            if(curr_pos[1] == this.next_pos[1]){ // y bang nhau thi di sang phai
+            if(curr_pos[1] == this.next_pos[1] && this.next_pos[0] - curr_pos[0] > 0){ // y bang nhau thi di sang phai
                 this.curr_direction = 1;
                 this.stopAllActions();
                 this.runAction(cc.animate(new cc.Animation(this.animationList[1],this.delay_per_frame)).repeatForever());
             }
-            else{
-                this.curr_direction = 7; // di len tren
+            else if (curr_pos[1] == this.next_pos[1] && this.next_pos[0] - curr_pos[0] < 0){ // Sang trai
+                this.stopAllActions();
+                this.curr_direction = -1;
+            }
+            else if (curr_pos[0] == this.next_pos[0] && this.next_pos[1] - curr_pos[1] > 0){ // Len tren
+                this.curr_direction = 7; 
                 this.stopAllActions();
                 this.runAction(cc.animate(new cc.Animation(this.animationList[0],this.delay_per_frame)).repeatForever());
+            }  
+            else{
+                this.curr_direction = -7; // xuong duoi
+                this.stopAllActions();
+                this.runAction(cc.animate(new cc.Animation(this.animationList[2],this.delay_per_frame)).repeatForever());
             }
+            log(this.curr_direction);
         }
     },
 
@@ -170,6 +200,7 @@ var Monster = cc.Sprite.extend({
     },
 
     update:function(dt){
+        // this.findPath();
         if (this.curr_direction == 7) {
             this.moveUp(dt);
         }
@@ -196,8 +227,9 @@ var Monster = cc.Sprite.extend({
     run:function(){
         this.visible = true;
 
+        this.findPath();
         this.scheduleUpdate();
-        this.changeDirection();
+        // this.changeDirection();
     },
 });
 
@@ -257,5 +289,12 @@ Monster.create = function(){
         }
         shared_map.addChild(p);
         MW.CONTAINER.MONSTER.push(p);
+    }
+}
+
+Monster.updateAllMonster = function(){
+    for(var i = 0; i < MW.MONSTER.NUM; i++){
+        MW.CONTAINER.MONSTER[i].findPath();
+
     }
 }

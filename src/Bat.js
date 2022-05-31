@@ -18,6 +18,12 @@ var Bat = Monster.extend({
         }
         this.animationList.push(frames);
 
+        frames = [];
+        for(var i = 0; i <= 7; i++){
+            frames.push(cc.spriteFrameCache.getSpriteFrame("monster_bat_run_000" + i + ".png"));
+        }
+        this.animationList.push(frames);
+
         // this.init( MW.MONSTER.BAT.SPEED, MW.MONSTER.BAT.DELAY_PER_FRAME);
         this.attr({
             anchorX:MW.MONSTER.BAT.ANCHOR_X,

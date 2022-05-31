@@ -67,7 +67,7 @@ var Map = cc.Layer.extend({
             p.setPos(idx);
         }
 
-        this.getPath();
+        // this.getPath();
 
         // for(var i = 0; i < this.shortes_path.length; i++){
         //     var p = new Barrier();
@@ -81,9 +81,9 @@ var Map = cc.Layer.extend({
 
 
         this.schedule(this.bornMonster, 2);
+
         // var p = new Assasin();
         // this.addChild(p);
-        // p.run();
         // p.run();
         // var path = m.getPath();
         // log(path);
@@ -94,7 +94,47 @@ var Map = cc.Layer.extend({
         //     // log(_x + ", " + _y);
         //     this.addChild(p);
         // }
-        
+        log(this.barrier);
+        if( 'mouse' in cc.sys.capabilities ) {
+            cc.eventManager.addListener({
+                event: cc.EventListener.MOUSE,
+                onMouseDown: function(event) {
+                    // var pos = event.getLocation(), target = event.getCurrentTarget();
+                    // if(event.getButton() === cc.EventMouse.BUTTON_RIGHT)
+                    //     cc.log("onRightMouseDown at: " + pos.x + " " + pos.y );
+                    // else if(event.getButton() === cc.EventMouse.BUTTON_LEFT)
+                    //     cc.log("onLeftMouseDown at: " + pos.x + " " + pos.y );
+                    // target.sprite.x = pos.x;
+                    // target.sprite.y = pos.y;
+                    var pos = event.getLocation();
+                    var x = Math.floor(pos.x/MW.CELL.WIDTH);
+                    var y = Math.floor(pos.y/MW.CELL.HEIGHT);
+                    var curr_pos = y*MW.MATRIX.WIDTH + x;
+                    this.barrier.push(curr_pos);
+                    var p = Barrier.getBarrier(this.num_barrier);
+                    p.setPos(curr_pos);
+                    this.num_barrier++;
+                    // cc.log("onLeftMouseDown at: " + pos.x + " " + pos.y );
+                    Monster.updateAllMonster();
+                
+                }.bind(this),
+                // onMouseMove: function(event){
+                //     var pos = event.getLocation(), target = event.getCurrentTarget();
+                //     cc.log("onMouseMove at: " + pos.x + " " + pos.y );
+                //     // target.sprite.x = pos.x;
+                //     // target.sprite.y = pos.y;
+                // },
+                // onMouseUp: function(event){
+                //     var pos = event.getLocation(), target = event.getCurrentTarget();
+				// 		// target.sprite.x = pos.x;
+				// 		// target.sprite.y = pos.y;
+                //     cc.log("onMouseUp at: " + pos.x + " " + pos.y );
+                // }
+            }, this);
+			log("hello");
+        } else {
+            cc.log("MOUSE Not supported");
+        }
     },
 	
     randomMap:function () 

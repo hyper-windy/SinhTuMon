@@ -18,6 +18,15 @@ var Giant = Monster.extend({
         }
         this.animationList.push(frames);
 
+        frames = [];
+        for(var i = 0; i <= 9; i++){
+            frames.push(cc.spriteFrameCache.getSpriteFrame("monster_dark_giant_run_000" + i + ".png"));
+        }
+        for(var i = 10; i <= 13; i++){
+            frames.push(cc.spriteFrameCache.getSpriteFrame("monster_dark_giant_run_00" + i + ".png"));
+        }
+        this.animationList.push(frames);
+
         // this.init( MW.MONSTER.GIANT.SPEED, MW.MONSTER.GIANT.DELAY_PER_FRAME);
         this.attr({
             anchorX:MW.MONSTER.GIANT.ANCHOR_X,

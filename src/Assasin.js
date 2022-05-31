@@ -5,7 +5,7 @@ var Assasin = Monster.extend({
 
         this.animationList = [];
 
-        // 0 is up, 1 is right.
+        // 0 is up, 1 is right, 2 is down.
         var frames = [];
         for(var i = 40; i <= 49; i++){
             frames.push(cc.spriteFrameCache.getSpriteFrame("monster_assassin_run_00" + i + ".png"));
@@ -15,6 +15,12 @@ var Assasin = Monster.extend({
         frames = [];
         for(var i = 20; i <= 29; i++){
             frames.push(cc.spriteFrameCache.getSpriteFrame("monster_assassin_run_00" + i + ".png"));
+        }
+        this.animationList.push(frames);
+
+        frames = [];
+        for(var i = 0; i <= 9; i++){
+            frames.push(cc.spriteFrameCache.getSpriteFrame("monster_assassin_run_000" + i + ".png"));
         }
         this.animationList.push(frames);
 

@@ -33,7 +33,7 @@ Barrier.getBarrier = function(i){
 }
 
 Barrier.create = function(){
-    for(var i = 0; i < MW.NUM_BARRIER.MAX; i++){
+    for(var i = 0; i < MW.NUM_BARRIER.NUM_POOL; i++){
         var p = new Barrier();
         MW.CONTAINER.BARRIER.push(p);
         shared_map.addChild(p);

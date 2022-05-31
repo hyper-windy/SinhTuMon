@@ -12,6 +12,7 @@ MW.MATRIX = {
 MW.NUM_BARRIER = {
     MIN: 5,
     MAX: 7,
+    NUM_POOL: 15,
 }
 
 MW.CELL = {
