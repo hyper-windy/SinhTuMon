@@ -60,8 +60,8 @@ var Monster = cc.Sprite.extend({
         this.next_cell = 0;
         this.next_pos = this.getPos(this.path[this.next_cell]);
         this.changeDirection();
-        log(this.next_cell);
-        log(this.next_pos);
+        // log(this.next_cell);
+        // log(this.next_pos);
     },
 
     getPath:function(curr_pos){
@@ -168,7 +168,7 @@ var Monster = cc.Sprite.extend({
                 this.stopAllActions();
                 this.runAction(cc.animate(new cc.Animation(this.animationList[2],this.delay_per_frame)).repeatForever());
             }
-            log(this.curr_direction);
+            // log(this.curr_direction);
         }
     },
 
