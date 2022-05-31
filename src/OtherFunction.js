@@ -59,6 +59,10 @@ function bfs(src, des){
     var x = [des];
     var y = des;
     while(ans[y] != -1){
+        if(ans[y] == null){
+            log("Nowayyy");
+            break;
+        }
         x.push(ans[y]);
         y = ans[y];
     }
